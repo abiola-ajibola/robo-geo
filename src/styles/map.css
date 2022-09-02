@@ -1,0 +1,22 @@
+.map-screen__wrapper {
+  width: 100vw;
+  height: 100vh;
+}
+
+.leaflet-container {
+  height: 100%;
+}
+
+.marker-icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: red;
+  border: 1px solid red;
+}
+
+.leaflet-div-icon {
+  border: none;
+  background: transparent;
+}
