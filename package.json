@@ -9,6 +9,7 @@
     "@types/jest": "^27.0.1",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
+    "axios": "^0.27.2",
     "express": "^4.18.1",
     "leaflet": "^1.8.0",
     "react": "^18.2.0",
@@ -18,7 +19,7 @@
     "web-vitals": "^2.1.0"
   },
   "scripts": {
-    "watch": "concurrently \"yarn watch:client\" \"yarn watch:server\"",
+    "dev": "concurrently \"yarn watch:client\" \"yarn watch:server\"",
     "watch:server": "nodemon server/server.ts",
     "watch:client": "cra-build-watch -v",
     "build": "concurrently \"yarn build:client\" \"yarn build:server\"",
