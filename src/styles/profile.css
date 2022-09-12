@@ -1,0 +1,66 @@
+.profile-page__wrapper {
+  display: flex;
+  padding: 2rem;
+}
+
+.profile-page__wrapper > div {
+  background-color: white;
+  border-radius: 2.5rem;
+}
+
+.profile-page__left {
+  min-width: 350px;
+  margin-right: 3rem;
+}
+
+.profile-page__right {
+  width: 100%;
+}
+
+.profile-page__right .labeled-li {
+  margin: 0.5rem 0;
+}
+
+.profile-image__wrapper {
+  text-align: center;
+}
+
+.header__h2 {
+  text-align: center;
+  padding-bottom: 1rem;
+}
+
+.profile-page__bio-data__wrapper {
+  padding: 0 2rem;
+}
+
+.profile-page__bio-data {
+  font-size: 1.3rem;
+  font-family: monospace, sans-serif;
+  padding: 0;
+}
+.profile-page__bio-data > li::marker {
+  color: transparent;
+}
+
+.profile-page__bio-data > li .key {
+  font-weight: bold;
+}
+
+.profile-page__currencies-table {
+  width: 100%;
+}
+
+.profile-page__currencies-table > thead {
+  font-weight: bold;
+}
+
+.spinner__wrapper {
+  width: 100%;
+  display: grid;
+  place-content: center;
+}
+
+.error__loader {
+  text-align: center;
+}

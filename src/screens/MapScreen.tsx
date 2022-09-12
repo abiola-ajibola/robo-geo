@@ -1,5 +1,5 @@
 import L from "leaflet";
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, Dispatch, SetStateAction } from "react";
 import {
   MapContainer,
   Marker,
@@ -30,7 +30,11 @@ function CenterMap({ center }: { center: Point }): JSX.Element {
   return <></>;
 }
 
-export default function MapScreen() {
+export default function MapScreen({
+  setUser,
+}: {
+  setUser: Dispatch<SetStateAction<User>>;
+}) {
   const center: Point = useCurrentLocation();
   const users: User[] = useUsers();
   const usersWithIcons: User[] = useMemo<User[]>(
@@ -47,11 +51,11 @@ export default function MapScreen() {
     <div className="map-screen__wrapper">
       <MapContainer
         center={center}
-        zoom={14}
+        zoom={4}
         attributionControl={false}
         zoomControl={false}
         minZoom={2}
-        maxZoom={14}
+        maxZoom={16}
       >
         <CenterMap center={center} />
         <ZoomControl position="bottomright" />
@@ -60,13 +64,14 @@ export default function MapScreen() {
             <p>Your location</p>
           </Popup>
         </Marker>
-        {usersWithIcons.map(
-          ({ address, Icon, username, name, email, phone }) => (
+        {usersWithIcons.map((user) => {
+          const { address, Icon, username } = user;
+          return (
             <Marker key={username} position={address.geo} icon={Icon}>
-              <MyPopup name={name} email={email} phone={phone} />
+              <MyPopup user={user} setUser={setUser} />
             </Marker>
-          )
-        )}
+          );
+        })}
         <TileLayer url={REACT_APP_TILELAYER_URL || ""} />
       </MapContainer>
     </div>
