@@ -10,6 +10,8 @@ const {
   OCEAN_REVERSE_GEOCODING_URL,
 } = process.env;
 
+console.log({NODE_PORT})
+
 export { NODE_PORT };
 export { TILELAYER_BASE_URL };
 export { REVERSE_GEOCODING_URL };

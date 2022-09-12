@@ -18,6 +18,8 @@ const app: Express = express();
 
 const { cwd } = process;
 
+console.log({version: process.version})
+
 const buildPath = path.resolve(cwd(), "build");
 app.use(express.static(buildPath));
 
