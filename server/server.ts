@@ -1,6 +1,6 @@
 import axios from "axios";
 import express, { Request, Response, Express } from "express";
-import path from "node:path";
+import path from "path";
 import {
   getAboutAndFlag,
   getCountryData,
@@ -17,6 +17,8 @@ import {
 const app: Express = express();
 
 const { cwd } = process;
+
+console.log({version: process.version})
 
 const buildPath = path.resolve(cwd(), "build");
 app.use(express.static(buildPath));
