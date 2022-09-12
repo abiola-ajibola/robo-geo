@@ -60,3 +60,7 @@
   display: grid;
   place-content: center;
 }
+
+.error__loader {
+  text-align: center;
+}

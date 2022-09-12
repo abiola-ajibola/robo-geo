@@ -33,14 +33,18 @@ export async function getAboutAndFlag(
 }
 
 export async function getReverseGeocodeData(
-  reverseGeocodeUrl: string
+  reverseGeocodeUrl?: string
 ): Promise<{
   country: string;
   state: string;
   ISO_country: string;
   ISO_state: string;
   display_name: string;
+  type: string;
 }> {
+  if (!reverseGeocodeUrl) {
+    throw new Error("Server error");
+  }
   const reverseGeocodeData = (await axios.get(reverseGeocodeUrl)).data;
   const country = reverseGeocodeData.address.country;
   const state = reverseGeocodeData.address.state;
@@ -54,7 +58,23 @@ export async function getReverseGeocodeData(
     ISO_country,
     ISO_state,
     display_name,
+    type: "country",
   };
+}
+
+export async function getOceanReverseGeocode(
+  oceanReverseGeocodeUrl?: string
+): Promise<{ name: string; type: string }> {
+  if (!oceanReverseGeocodeUrl) {
+    throw new Error("Server error");
+  }
+
+  const oceanGeoData: {
+    ocean: {
+      name: string;
+    };
+  } = (await axios.get(oceanReverseGeocodeUrl)).data;
+  return { name: oceanGeoData?.ocean.name, type: "ocean" };
 }
 
 export async function getCountryData(country: string): Promise<{

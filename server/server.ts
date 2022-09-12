@@ -4,6 +4,7 @@ import path from "node:path";
 import {
   getAboutAndFlag,
   getCountryData,
+  getOceanReverseGeocode,
   getReverseGeocodeData,
 } from "./apiRequests";
 import {
@@ -11,6 +12,7 @@ import {
   NODE_PORT,
   REVERSE_GEOCODING_URL,
   TILELAYER_BASE_URL,
+  OCEAN_REVERSE_GEOCODING_URL,
 } from "./constants";
 const app: Express = express();
 
@@ -41,48 +43,73 @@ app.get("/getGeoData", async (req, res) => {
       "{{lat}}",
       query.lat as string
     ).replace("{{lon}}", query.lon as string);
-    if (reverseGeocodeUrl) {
+    const oceanReverseGeocodeUrl = OCEAN_REVERSE_GEOCODING_URL?.replace(
+      "{{lat}}",
+      query.lat as string
+    ).replace("{{lng}}", query.lon as string);
+    if (reverseGeocodeUrl || oceanReverseGeocodeUrl) {
       try {
-        const { country, state, ISO_country, ISO_state, display_name } =
-          await getReverseGeocodeData(reverseGeocodeUrl);
-        const { about, flag_url } = await getAboutAndFlag(
-          GEODATA_API_URL?.replace("{{title}}", encodeURIComponent(country))
-        );
+        const reverseGeocodeData = await Promise.allSettled([
+          getReverseGeocodeData(reverseGeocodeUrl),
+          getOceanReverseGeocode(oceanReverseGeocodeUrl),
+        ]);
+        if (reverseGeocodeData?.[0].status === "fulfilled") {
+          const { country, state, ISO_country, ISO_state, display_name, type } =
+            reverseGeocodeData[0].value;
 
-        const {
-          official_name,
-          top_level_domain,
-          calling_code,
-          capital,
-          population,
-          area,
-          timezones,
-          currencies,
-        } = await getCountryData(country);
+          const { about, flag_url } = await getAboutAndFlag(
+            GEODATA_API_URL?.replace("{{title}}", encodeURIComponent(country))
+          );
 
-        res.json({
-          country,
-          state,
-          ISO_country,
-          ISO_state,
-          display_name,
-          about,
-          flag_url,
-          official_name,
-          top_level_domain,
-          calling_code,
-          capital,
-          population,
-          area,
-          timezones,
-          currencies,
-        });
+          const {
+            official_name,
+            top_level_domain,
+            calling_code,
+            capital,
+            population,
+            area,
+            timezones,
+            currencies,
+          } = await getCountryData(country);
+
+          res.json({
+            country,
+            state,
+            ISO_country,
+            ISO_state,
+            display_name,
+            about,
+            flag_url,
+            official_name,
+            top_level_domain,
+            calling_code,
+            capital,
+            population,
+            area,
+            timezones,
+            currencies,
+            type,
+          });
+        }
+
+        if (reverseGeocodeData?.[1].status === "fulfilled") {
+          const { name: ocean_name, type } = reverseGeocodeData[1].value;
+          const formatName = ocean_name.split(" ");
+          if (formatName.length > 2) formatName.shift();
+          const { about } = await getAboutAndFlag(
+            GEODATA_API_URL?.replace(
+              "{{title}}",
+              encodeURIComponent(formatName.join(" "))
+            )
+          );
+          if (ocean_name) res.json({ ocean_name, type, about });
+        }
       } catch (e) {
         console.log(e);
         res.status(500).json({ error: "Server error" });
       }
     } else {
-      console.log({ error: "no reverse geolocation url urls" });
+      console.log({ error: "no reverse geolocation url" });
       res.status(500).json({ error: "Server error" });
     }
   } else {

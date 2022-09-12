@@ -50,4 +50,7 @@ export type GeoData = {
   top_level_domain?: string[];
   calling_code?: string;
   population?: string;
+  error?: string;
+  type: string;
+  ocean_name?: string;
 };
