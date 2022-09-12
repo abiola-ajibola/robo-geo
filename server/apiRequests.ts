@@ -19,7 +19,7 @@ export async function getAboutAndFlag(
   const $ = cheerio.load(wikiDataHtml);
   const section = $("html>body>section")[0];
   const paragraph = $("p", section, wikiDataHtml).text();
-  const about = paragraph.replaceAll(/(\[[0-9]*\])/g, ""); // strip out the references
+  const about = paragraph.replace(/(\[[0-9]*\])/g, ""); // strip out the references
   const flag_url = $(
     "tbody>tr:nth-child(2)>td>div>div:nth-child(1)>div:nth-child(1)>span>a>img",
     section,
