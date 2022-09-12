@@ -28,3 +28,26 @@ export type User = {
   };
   Icon?: L.DivIcon;
 };
+
+export type GeoData = {
+  country?: string;
+  state?: string;
+  ISO_state?: string;
+  ISO_country?: string;
+  display_name: string;
+  about?: string;
+  flag_url?: string;
+  capital?: string;
+  largest_city?: string;
+  area?: string;
+  currencies?: {
+    code: string;
+    name: string;
+    symbol: string;
+  }[];
+  timezones?: string[];
+  official_name?: string;
+  top_level_domain?: string[];
+  calling_code?: string;
+  population?: string;
+};
