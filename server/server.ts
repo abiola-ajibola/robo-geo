@@ -1,6 +1,6 @@
 import axios from "axios";
 import express, { Request, Response, Express } from "express";
-import path from "node:path";
+import path from "path";
 import {
   getAboutAndFlag,
   getCountryData,
