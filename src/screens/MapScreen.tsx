@@ -14,6 +14,7 @@ import "leaflet/dist/leaflet.css";
 import "../styles/map.css";
 import useUsers from "../hooks/useUsers";
 import MyPopup from "../components/MyPopup";
+import SidePane from "../components/SidePane";
 
 const CurrentLocationIcon = L.divIcon({
   className: "marker-icon",
@@ -58,6 +59,7 @@ export default function MapScreen({
         maxZoom={16}
       >
         <CenterMap center={center} />
+        <SidePane users={users} />
         <ZoomControl position="bottomright" />
         <Marker position={center} icon={CurrentLocationIcon}>
           <Popup>
