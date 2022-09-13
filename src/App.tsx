@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import "./App.css";
+import "./styles/App.css";
 import MapScreen from "./screens/MapScreen";
 import Profile from "./screens/Profile";
 import { User } from "./types";
