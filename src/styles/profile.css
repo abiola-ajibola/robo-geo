@@ -1,6 +1,8 @@
 .profile-page__wrapper {
-  display: flex;
+  display: grid;
   padding: 2rem;
+  grid-gap: 2rem;
+  grid-template-columns: 1fr 1.5fr;
 }
 
 .profile-page__wrapper > div {
@@ -8,16 +10,11 @@
   border-radius: 2.5rem;
 }
 
-.profile-page__left {
-  min-width: 350px;
-  margin-right: 3rem;
-}
-
 .profile-page__right {
   width: 100%;
 }
 
-.profile-page__right .labeled-li {
+.profile-page__wrapper .labeled-li {
   margin: 0.5rem 0;
 }
 
@@ -63,4 +60,20 @@
 
 .error__loader {
   text-align: center;
+}
+
+@media screen and (max-width: 800px) {
+  .profile-page__wrapper {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .profile-page__wrapper {
+    padding: 0.5rem;
+  }
+
+  .profile-page__bio-data__wrapper {
+    padding: 1rem;
+  }
 }

@@ -14,3 +14,9 @@
 .separator {
   border-bottom: solid 2px #aaa7a7;
 }
+
+@media screen and (max-width: 600px) {
+  .header__h2 {
+    font-size: 1.5rem;
+  }
+}
