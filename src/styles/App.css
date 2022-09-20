@@ -1,0 +1,22 @@
+.header__h2 {
+  font-weight: bolder;
+  font-family: "Bahnschrift SemiCOndensed",Roboto, Oxygen, sans-serif, system-ui;
+  color: black;
+  font-size: 2rem;
+}
+.header__h3 {
+  font-weight: bolder;
+  font-family: "Bahnschrift SemiCOndensed",Roboto, Oxygen, sans-serif, system-ui;
+  color: black;
+  font-size: 1.5rem;
+}
+
+.separator {
+  border-bottom: solid 2px #aaa7a7;
+}
+
+@media screen and (max-width: 600px) {
+  .header__h2 {
+    font-size: 1.5rem;
+  }
+}

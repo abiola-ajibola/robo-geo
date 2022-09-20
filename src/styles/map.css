@@ -20,3 +20,7 @@
   border: none;
   background: transparent;
 }
+
+.leaflet-container .leaflet-bottom .leaflet-control {
+  margin-bottom: 5rem;
+}
