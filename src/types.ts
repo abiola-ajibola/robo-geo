@@ -1,3 +1,8 @@
+import {
+  HTMLAttributes,
+  DetailedHTMLProps,
+} from "react";
+
 export type Point = {
   lat: number;
   lng: number;
@@ -53,4 +58,23 @@ export type GeoData = {
   error?: string;
   type: string;
   ocean_name?: string;
+};
+
+export type OnIntersectionProps = {
+  id: string;
+  entry: IntersectionObserverEntry;
+};
+
+export type VisibilityState = {
+  firstIconVisible: boolean;
+  lastIconVisible: boolean;
+  position: "start" | "middle" | "end";
+};
+
+export type ScrollablePaneProps = DetailedHTMLProps<
+  HTMLAttributes<HTMLDivElement>,
+  HTMLDivElement
+> & {
+  users: User[];
+  onIntersection: ({ id, entry }: OnIntersectionProps) => void;
 };

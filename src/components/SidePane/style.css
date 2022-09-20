@@ -1,12 +1,18 @@
 .side-pane__wrapper {
-  position: fixed;
+  position: relative;
   display: flex;
   flex-direction: column;
-  /* left: 0; */
   border-radius: 0 1rem 1rem 0;
   background-color: #ffffff;
   z-index: 999999;
   height: 100vh;
+  width: 96px;
+}
+
+@media screen and (max-width: 600px) {
+  .side-pane__wrapper {
+    height: calc(100vh - 3rem);
+  }
 }
 
 .side-pane {
@@ -14,7 +20,10 @@
   overflow-y: scroll;
   position: relative;
   display: block;
-  /* height: ; */
+}
+
+.side-pane::-webkit-scrollbar {
+  display: none;
 }
 
 .side-pane-icon {
@@ -26,7 +35,8 @@
   text-align: end;
 }
 
-.side-pane-button button {
+.side-pane-button button,
+.side-pane-scroll-button {
   font-size: 2rem;
   font-weight: bold;
   color: #4dbaba;
@@ -34,4 +44,18 @@
   background: none;
   outline: none;
   cursor: pointer;
+}
+
+.side-pane-button button:disabled,
+.side-pane-scroll-button:disabled {
+  color: grey;
+  cursor: default;
+}
+.side-pane-button button.reverse,
+.scroll-up {
+  transform: rotate(180deg);
+}
+
+.side-pane-scroll-button__wrapper {
+  text-align: center;
 }
