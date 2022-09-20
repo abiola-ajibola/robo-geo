@@ -3,7 +3,7 @@
 See the actual geographical locations of the imaginary users on [jsonplaceholder](https://jsonplaceholder.typicode.com/users) and some of their biodata in a user-friendly manner
 
 ## Live demo
-See the live demo here: ...coming soon.
+See the live demo here: https://robo-geo-main-8fzc.onrender.com.
 
 # Installation
 Clone repo to your local machine and installing all dependencies using yarn/npm
