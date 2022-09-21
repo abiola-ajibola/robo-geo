@@ -15,6 +15,7 @@ import "../styles/map.css";
 import useUsers from "../hooks/useUsers";
 import MyPopup from "../components/MyPopup";
 import SidePane from "../components/SidePane";
+import packageJson from "../../package.json";
 
 const CurrentLocationIcon = L.divIcon({
   className: "marker-icon",
@@ -50,32 +51,35 @@ export default function MapScreen({
   );
   return (
     <div className="map-screen__wrapper">
-      <MapContainer
-        center={center}
-        zoom={4}
-        attributionControl={false}
-        zoomControl={false}
-        minZoom={2}
-        maxZoom={16}
-      >
-        <CenterMap center={center} />
-        <SidePane users={users} />
-        <ZoomControl position="bottomright" />
-        <Marker position={center} icon={CurrentLocationIcon}>
-          <Popup>
-            <p>Your location</p>
-          </Popup>
-        </Marker>
-        {usersWithIcons.map((user) => {
-          const { address, Icon, username } = user;
-          return (
-            <Marker key={username} position={address.geo} icon={Icon}>
-              <MyPopup user={user} setUser={setUser} />
-            </Marker>
-          );
-        })}
-        <TileLayer url={REACT_APP_TILELAYER_URL || ""} />
-      </MapContainer>
+      <div className="map__wrapper">
+        <MapContainer
+          center={center}
+          zoom={4}
+          attributionControl={false}
+          zoomControl={false}
+          minZoom={2}
+          maxZoom={16}
+        >
+          <CenterMap center={center} />
+          <SidePane users={users} />
+          <ZoomControl position="bottomright" />
+          <Marker position={center} icon={CurrentLocationIcon}>
+            <Popup>
+              <p>Your location</p>
+            </Popup>
+          </Marker>
+          {usersWithIcons.map((user) => {
+            const { address, Icon, username } = user;
+            return (
+              <Marker key={username} position={address.geo} icon={Icon}>
+                <MyPopup user={user} setUser={setUser} />
+              </Marker>
+            );
+          })}
+          <TileLayer url={REACT_APP_TILELAYER_URL || ""} />
+        </MapContainer>
+      </div>
+      <footer className="footer">{`Robo Geo - v${packageJson.version}`}</footer>
     </div>
   );
 }

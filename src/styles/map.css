@@ -1,11 +1,14 @@
 .map-screen__wrapper {
-  width: 100vw;
-  height: 100vh;
+  height: calc(100vh - 22px);
+}
+
+.map__wrapper {
+  height: 100%;
 }
 
 @media screen and (max-width: 600px) {
   .map-screen__wrapper {
-    height: calc(100vh - 3rem);
+    height: calc(100vh - 4rem);
   }
 }
 
@@ -29,4 +32,10 @@
 
 .leaflet-container .leaflet-bottom .leaflet-control {
   margin-bottom: 5rem;
+}
+
+.footer {
+  background-color: white;
+  padding: 0.125rem 1rem;
+  font-size: 0.8rem;
 }
