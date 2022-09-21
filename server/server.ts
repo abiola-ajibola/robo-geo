@@ -13,12 +13,13 @@ import {
   REVERSE_GEOCODING_URL,
   TILELAYER_BASE_URL,
   OCEAN_REVERSE_GEOCODING_URL,
+  sampleGeoData,
 } from "./constants";
 const app: Express = express();
 
 const { cwd } = process;
 
-console.log({version: process.version})
+console.log({ NODE_VERSION: process.version });
 
 const buildPath = path.resolve(cwd(), "build");
 app.use(express.static(buildPath));
@@ -118,6 +119,14 @@ app.get("/getGeoData", async (req, res) => {
     res.status(405).json({ message: "Invalid query" });
   }
 });
+
+///////////////////////////////////////
+// Endpoints fopr testing
+app.get("/test/getGeoData", (req, res) => {
+    res.json(sampleGeoData);
+});
+
+///////////////////////////////////////
 
 app.get("/*", (req: Request, res: Response) => {
   res.sendFile(path.join(buildPath, "index.html"), (err) => {
