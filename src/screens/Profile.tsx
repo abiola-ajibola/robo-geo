@@ -6,6 +6,7 @@ import useGeoData from "../hooks/useGeoData";
 import CurrenciesTable from "../components/CurrenciesTable";
 import "../styles/profile.css";
 import CircularLoader from "../components/CircularLoader";
+import ColapsibleArticle from "../components/ColapsibleArticle";
 
 export default function Profile({ user }: { user: User }): JSX.Element {
   useBlank();
@@ -122,7 +123,10 @@ export default function Profile({ user }: { user: User }): JSX.Element {
                   {geoData?.population?.toString()}
                 </LabeledListItem>
                 <h4 className="key">About:</h4>
-                <article className="value">{geoData?.about}</article>
+                <ColapsibleArticle
+                  className="value"
+                  content={geoData?.about}
+                />
               </ul>
             )
           ) : (
