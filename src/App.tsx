@@ -30,31 +30,6 @@ const defaultUser: User = {
   },
 };
 
-// const defaultUser: User = {
-//   id: 7,
-//   name: "Kurtis Weissnat",
-//   username: "Elwyn.Skiles",
-//   email: "Telly.Hoeger@billy.biz",
-//   address: {
-//     street: "Rex Trail",
-//     suite: "Suite 280",
-//     city: "Howemouth",
-//     zipcode: "58804-1099",
-//     geo: {
-//       lat: 24.8918,
-//       lng: 21.8984,
-//     },
-//   },
-//   phone: "210.067.6132",
-//   website: "elvis.io",
-//   company: {
-//     name: "Yost and Sons",
-//     catchPhrase: "Switchable contextually-based project",
-//     bs: "aggregate real-time technologies",
-//   },
-//   image_url: "https://robohash.org/Kurtis Weissnat?size=64x64&set=set3",
-// };
-
 function App(): JSX.Element {
   const [user, setUser] = useState<User>(defaultUser);
   return (
